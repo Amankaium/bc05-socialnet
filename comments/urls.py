@@ -8,4 +8,8 @@ urlpatterns = [
     path('v1/detail/<int:pk>/', CommentDetailAPIView.as_view()),
     path('v1/update/<int:pk>/', CommentUpdateAPIView.as_view()),
     path('v1/delete/<int:pk>/', CommentDeleteAPIView.as_view()),
+    
+    path('v2/list-create/', CommentListCreate.as_view()), 
+    path('v2/info/<int:pk>/', CommentInfo.as_view()),
+    
 ]
