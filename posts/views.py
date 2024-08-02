@@ -28,3 +28,23 @@ class PostCreate(APIView):
             serializer.save()
             return Response("Created", status=201)
         return Response("Error", status=400)
+
+
+class PostUpdate(APIView):
+    def put(self, request, *args, **kwargs):
+        publication = Publication.objects.get(pk=kwargs["pk"])
+        serializer = PostCreateSerializer(
+            instance=publication,
+            data=request.data,
+        )
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=202)
+        return Response(serializer.errors, 400)
+
+
+class PostDelete(APIView):
+    def delete(self, request, *args, **kwargs):
+        publication = Publication.objects.get(pk=kwargs["pk"])
+        publication.delete()
+        return Response("no data", 204)
