@@ -1,5 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from posts.views import *
+from rest_framework.routers import DefaultRouter
+
+
+like_router = DefaultRouter()
+like_router.register('', LikeViewSet)
 
 
 urlpatterns = [
@@ -7,5 +12,8 @@ urlpatterns = [
     path('info/<int:pk>/', PostInfo.as_view()),
     path('create/', PostCreate.as_view(), name='post-create'),
     path('update/<int:pk>/', PostUpdate.as_view(), name='post-update'),
-    path('delete/<int:pk>/', PostDelete.as_view(), name='post-delete'),
+    path('delete/<int:pk>/', PostDelete.as_view(), name='post-delete'),\
+
+    path('likes/', include(like_router.urls))
 ]
+

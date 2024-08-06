@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Publication
+from .models import *
 from userapp.serializers import UserSerializer
 
 
@@ -17,3 +17,9 @@ class PostCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
         fields = ['title', 'content', 'author']
+
+
+class LikeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Like
+        fields = ['user', 'post']
